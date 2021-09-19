@@ -4,7 +4,10 @@ export const styles = makeStyles({
     titleRegister: {
         fontSize: '30px',
         padding: '3px 0px 3px 0px',
-        color: 'linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%)',
+        textTransform: "uppercase",
+        background: "-webkit-linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+        "-webkit-background-clip": "text",
+        "-webkit-text-fill-color": "transparent",
     },
     submitButton: {
         background: 'linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%)',

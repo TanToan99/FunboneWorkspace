@@ -16,7 +16,7 @@ const LoginPage = (_) => {
       </Grid>
       <Grid item md={4}>
         <div className={classes.container}>
-          {location.pathname === "/" ? <Login /> : <RegisterComponent/>}
+          {location.pathname === "/" ? <Login/> : null}
         </div>
       </Grid>
     </Grid>

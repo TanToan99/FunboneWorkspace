@@ -45,6 +45,7 @@ const Register = (props) => {
           display: "flex",
           width: "500px",
           flexDirection: "column",
+          justifyContent: "center",
         }}
       >
         <h1 className={classes.titleRegister}>Signup</h1>
