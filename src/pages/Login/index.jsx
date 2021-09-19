@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Login } from "components/landing";
 import { useStyle } from "./styles";
 import coverImage from "assets/images/LoginBackground.jpg";
+import { RegisterComponent } from "components/landing";
 
 const LoginPage = (_) => {
   const classes = useStyle();
@@ -15,7 +16,7 @@ const LoginPage = (_) => {
       </Grid>
       <Grid item md={4}>
         <div className={classes.container}>
-          {location.pathname === "/" ? <Login /> : null}
+          {location.pathname === "/" ? <Login /> : <RegisterComponent/>}
         </div>
       </Grid>
     </Grid>
