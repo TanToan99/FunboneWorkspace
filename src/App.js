@@ -9,7 +9,8 @@ function App() {
       <Suspense fallback={<div>Loading App</div>}>
         <Router>
           <Switch>
-            <Route exact path="/" component={LoginPage}/>
+            <Route exact path="/" component={LoginPage} />
+            <Route path="/register" component={LoginPage}/>
           </Switch>
         </Router>
       </Suspense>

@@ -7,7 +7,7 @@ import {
   InputAdornment,
   IconButton,
   Select,
-  MenuItem
+  MenuItem,
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -50,13 +50,17 @@ const Register = (props) => {
       >
         <h1 className={classes.titleRegister}>Signup</h1>
         {/*username*/}
-        <FormControl fullWidth={false} sx={{ m: 2, borderRadius: "unset" }} variant="outlined">
+        <FormControl
+          fullWidth={false}
+          sx={{ m: 2, borderRadius: "unset" }}
+          variant="outlined"
+        >
           <InputLabel htmlFor="username">Username</InputLabel>
           <OutlinedInput
             id="username"
             type="text"
             required={true}
-            sx={{  borderRadius: "unset" }}
+            sx={{ borderRadius: "unset" }}
             value={values.username}
             onChange={handleChange("username")}
             label="Username"
@@ -69,7 +73,7 @@ const Register = (props) => {
             id="password"
             type={values.showPassword ? "text" : "password"}
             value={values.password}
-            sx={{  borderRadius: "unset" }}
+            sx={{ borderRadius: "unset" }}
             required={true}
             onChange={handleChange("password")}
             endAdornment={
@@ -93,7 +97,7 @@ const Register = (props) => {
           <OutlinedInput
             id="fullname"
             type={"text"}
-            sx={{  borderRadius: "unset" }}
+            sx={{ borderRadius: "unset" }}
             value={values.fullname}
             required={true}
             onChange={handleChange("fullname")}
@@ -107,7 +111,7 @@ const Register = (props) => {
             id="email"
             type="email"
             value={values.email}
-            sx={{  borderRadius: "unset" }}
+            sx={{ borderRadius: "unset" }}
             required={true}
             onChange={handleChange("email")}
             label="Email"
@@ -119,7 +123,7 @@ const Register = (props) => {
           <Select
             id="select"
             value={values.position}
-            sx={{  borderRadius: "unset" }}
+            sx={{ borderRadius: "unset" }}
             required={true}
             label="Position"
             onChange={handleChange("position")}
@@ -130,11 +134,7 @@ const Register = (props) => {
             <MenuItem value={""}>None</MenuItem>
           </Select>
         </FormControl>
-        <input
-          className={classes.submitButton}
-          type="submit"
-          value="Submit"
-        />
+        <input className={classes.submitButton} type="submit" value="Submit" />
       </Box>
     </div>
   );
