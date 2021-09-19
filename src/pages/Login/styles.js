@@ -1,6 +1,4 @@
-import { height } from "@mui/system";
-
-const { makeStyles } = require("@mui/styles");
+const { makeStyles } = ("@mui/styles");
 
 export const useStyle = makeStyles((theme) => ({
   parentContainer: {
