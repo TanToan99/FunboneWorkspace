@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Box,
+  Button,
   FormControl,
   InputLabel,
   OutlinedInput,
@@ -12,8 +13,9 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { styles } from "./style";
+import { Link } from "react-router-dom";
 
-const Register = (props) => {
+const Register = () => {
   const [values, setValues] = React.useState({
     username: "",
     fullname: "",
@@ -39,13 +41,13 @@ const Register = (props) => {
   };
   const classes = styles();
   return (
-    <div onSubmit={handleSubmit}>
+    <div className={classes.registerContainer} onSubmit={handleSubmit}>
       <Box
         sx={{
           display: "flex",
           width: "500px",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyItems: "center",
         }}
       >
         <h1 className={classes.titleRegister}>Signup</h1>
@@ -134,7 +136,18 @@ const Register = (props) => {
             <MenuItem value={""}>None</MenuItem>
           </Select>
         </FormControl>
-        <input className={classes.submitButton} type="submit" value="Submit" />
+        <Button
+          className={classes.submitButton}
+          type="submit"
+          sx={{ m: 2, borderRadius: "unset" }}
+        >
+          Register
+        </Button>
+        <div className={classes.redirectContainer}>
+          <Link to={"/login"} className={classes.toLogin}>
+            Do you have an account? Login here
+          </Link>
+        </div>
       </Box>
     </div>
   );
