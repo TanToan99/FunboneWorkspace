@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import { Box, ListItemButton, ListItemText, ListItemIcon } from "@mui/material";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import { useStyle } from "./style";
-import Public from "@mui/icons-material/Public";
+import imageNFQ from "assets/images/NFQ.png";
+import imageGW from "assets/images/GW.png";
 const data = [
-  { icon: <Public />, label: "Ws1" },
-  { icon: <Public />, label: "Ws2" },
-  { icon: <Public />, label: "Ws3" },
-  { icon: <Public />, label: "Ws4" },
+  { icon: imageGW, label: "Ws1" },
+  { icon: imageNFQ, label: "Ws2" },
+  { icon: imageGW, label: "Ws3" },
+  { icon: imageNFQ, label: "Ws4" },
+  { icon: imageGW, label: "Ws5" },
+  { icon: imageNFQ, label: "Ws6" },
+  { icon: imageGW, label: "Ws7" },
+  { icon: imageNFQ, label: "Ws8" },
+  { icon: imageGW, label: "Ws9" },
+  { icon: imageNFQ, label: "Ws10" },
 ];
 const ListWorkspace = () => {
   const [open, setOpen] = useState(false);
@@ -16,10 +23,10 @@ const ListWorkspace = () => {
     <div className={classes.wsContainer}>
       <Box className={classes.listWorkspaces}>
         <ListItemButton
-          alignItems="flex-start"
+          alignItems="center"
           onClick={() => setOpen(!open)}
           sx={{
-            "&:hover, &:focus": { "& svg": { opacity: open ? 0: 1 } },
+            "&:hover, &:focus": { "& svg": { opacity: open ? 0 : 1 } },
           }}
         >
           <ListItemText
@@ -44,10 +51,13 @@ const ListWorkspace = () => {
         {open &&
           data.map((item) => (
             <ListItemButton
+              alignItems="center"
               key={item.label}
               sx={{ minHeight: 35, color: "#fff" }}
             >
-              <ListItemIcon sx={{ color: "inherit" }}>{item.icon}</ListItemIcon>
+              <ListItemIcon sx={{ color: "inherit" }}>
+                <img width="35px" height="35px" src={item.icon} alt="" />
+              </ListItemIcon>
               <ListItemText
                 primary={item.label}
                 primaryTypographyProps={{ fontSize: 15 }}
@@ -56,9 +66,7 @@ const ListWorkspace = () => {
           ))}
       </Box>
 
-      <Box>
-        
-      </Box>
+      <Box></Box>
     </div>
   );
 };
