@@ -9,8 +9,25 @@ import {
 } from "@mui/material";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import { useStyle } from "./style";
+<<<<<<< HEAD
 import { fetchWorkspaceList } from "api";
 
+=======
+import imageNFQ from "assets/images/NFQ.png";
+import imageGW from "assets/images/GWicon.png";
+const data = [
+  { icon: imageGW, label: "Ws1" },
+  { icon: imageNFQ, label: "Ws2" },
+  { icon: imageGW, label: "Ws3" },
+  { icon: imageNFQ, label: "Ws4" },
+  { icon: imageGW, label: "Ws5" },
+  { icon: imageNFQ, label: "Ws6" },
+  { icon: imageGW, label: "Ws7" },
+  { icon: imageNFQ, label: "Ws8" },
+  { icon: imageGW, label: "Ws9" },
+  { icon: imageNFQ, label: "Ws10" },
+];
+>>>>>>> f1107dc... fix: resolve conflict
 const ListWorkspace = () => {
   const data = [];
 
