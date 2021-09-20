@@ -35,12 +35,18 @@ export const useStyles = makeStyles(() => ({
   },
 
   loginForm: {
-    padding: "20px"
+    padding: "20px 50px"
   },
 
   directBlock: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+
+  logo: {
+    height: "64px",
+    width: "64px",
+    margin: "auto"
   }
 }));

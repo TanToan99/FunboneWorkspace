@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Box,
+  Button,
   FormControl,
   InputLabel,
   OutlinedInput,
@@ -8,7 +9,6 @@ import {
   IconButton,
   Select,
   MenuItem,
-  Button,
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -144,7 +144,7 @@ const Register = () => {
           Register
         </Button>
         <div className={classes.redirectContainer}>
-          <Link to={"/login"} className={classes.toLogin}>
+          <Link to="/" className={classes.toLogin}>
             Do you have an account? Login here
           </Link>
         </div>
