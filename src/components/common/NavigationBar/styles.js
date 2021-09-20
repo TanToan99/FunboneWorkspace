@@ -16,15 +16,14 @@ export const useStyles = makeStyles(() => ({
 
   findTextBox: {
     background: "#ffffffc7",
-    outline: "none",
-    height: "32px",
+    height: "40px",
     borderRadius: "20px !important",
     padding: "5px 20px ",
     
   },
 
   logo: {
-    height: "32px",
+    height: "40px",
     width: "auto",
   },
   
