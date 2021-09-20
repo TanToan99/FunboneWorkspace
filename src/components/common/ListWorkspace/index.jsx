@@ -55,6 +55,10 @@ const ListWorkspace = () => {
             </ListItemButton>
           ))}
       </Box>
+
+      <Box>
+        
+      </Box>
     </div>
   );
 };
