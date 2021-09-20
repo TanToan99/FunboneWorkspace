@@ -14,15 +14,28 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { styles } from "./style";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const signUpSchema = yup.object().shape({
+  fullName: yup.string().required(),
+  userName: yup.string().required(),
+  email: yup.string().email().required(),
+  password: yup.string().required(),
+  role: yup.string().required(),
+});
 
 const Register = () => {
   const [values, setValues] = React.useState({
-    username: "",
-    fullname: "",
-    email: "",
-    password: "",
-    position: "",
     showPassword: false,
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(signUpSchema),
   });
   const handleClickShowPassword = () => {
     setValues({
@@ -30,25 +43,26 @@ const Register = () => {
       showPassword: !values.showPassword,
     });
   };
-  const handleChange = (prop) => (e) => {
-    setValues({ ...values, [prop]: e.target.value });
-  };
   const handleMouseDownPassword = (e) => {
     e.preventDefault();
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onRegister = (data) => {
+    console.log(data);
   };
+  const onError = () => console.log(errors);
   const classes = styles();
   return (
-    <div className={classes.registerContainer} onSubmit={handleSubmit}>
+    <div className={classes.registerContainer}>
       <Box
+        component="form"
+        autoComplete
         sx={{
           display: "flex",
           width: "500px",
           flexDirection: "column",
           justifyItems: "center",
         }}
+        onSubmit={handleSubmit(onRegister, onError)}
       >
         <h1 className={classes.titleRegister}>Signup</h1>
         {/*username*/}
@@ -60,12 +74,12 @@ const Register = () => {
           <InputLabel htmlFor="username">Username</InputLabel>
           <OutlinedInput
             id="username"
+            name="userName"
             type="text"
             required={true}
             sx={{ borderRadius: "unset" }}
-            value={values.username}
-            onChange={handleChange("username")}
             label="Username"
+            {...register("userName")}
           />
         </FormControl>
         {/*password*/}
@@ -74,10 +88,9 @@ const Register = () => {
           <OutlinedInput
             id="password"
             type={values.showPassword ? "text" : "password"}
-            value={values.password}
+            name="password"
             sx={{ borderRadius: "unset" }}
             required={true}
-            onChange={handleChange("password")}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -91,6 +104,7 @@ const Register = () => {
               </InputAdornment>
             }
             label="Password"
+            {...register("password", { required: true, minLength: 8 })}
           />
         </FormControl>
         {/*fullname*/}
@@ -98,12 +112,12 @@ const Register = () => {
           <InputLabel htmlFor="fullname">Fullname</InputLabel>
           <OutlinedInput
             id="fullname"
+            name="fullName"
             type={"text"}
             sx={{ borderRadius: "unset" }}
-            value={values.fullname}
             required={true}
-            onChange={handleChange("fullname")}
             label="Fullname"
+            {...register("fullName")}
           />
         </FormControl>
         {/*email*/}
@@ -112,11 +126,11 @@ const Register = () => {
           <OutlinedInput
             id="email"
             type="email"
-            value={values.email}
+            name="email"
             sx={{ borderRadius: "unset" }}
             required={true}
-            onChange={handleChange("email")}
             label="Email"
+            {...register("email")}
           />
         </FormControl>
         {/*position*/}
@@ -124,16 +138,15 @@ const Register = () => {
           <InputLabel htmlFor="select">Position</InputLabel>
           <Select
             id="select"
-            value={values.position}
+            name="role"
             sx={{ borderRadius: "unset" }}
             required={true}
             label="Position"
-            onChange={handleChange("position")}
+            {...register("role")}
           >
             <MenuItem value={"CEO"}>CEO</MenuItem>
             <MenuItem value={"CFO"}>CFO</MenuItem>
             <MenuItem value={"CTO"}>CTO</MenuItem>
-            <MenuItem value={""}>None</MenuItem>
           </Select>
         </FormControl>
         <Button
