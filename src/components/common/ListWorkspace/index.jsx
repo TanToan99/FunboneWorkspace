@@ -94,7 +94,7 @@ const ListWorkspace = () => {
                     />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Workspaces"
+                    primary={item.label}
                     primaryTypographyProps={{
                       fontSize: 20,
                       fontWeight: "medium",
