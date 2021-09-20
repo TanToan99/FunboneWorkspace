@@ -42,5 +42,11 @@ export const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+
+  logo: {
+    height: "64px",
+    width: "64px",
+    margin: "auto"
   }
 }));

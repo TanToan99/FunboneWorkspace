@@ -144,7 +144,7 @@ const Register = () => {
           Register
         </Button>
         <div className={classes.redirectContainer}>
-          <Link to={"/login"} className={classes.toLogin}>
+          <Link to="/" className={classes.toLogin}>
             Do you have an account? Login here
           </Link>
         </div>

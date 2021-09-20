@@ -15,7 +15,6 @@ export const styles = makeStyles({
     "-webkit-text-fill-color": "transparent",
   },
   submitButton: {
-    background: "linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%)",
     outline: "unset",
     padding: "0 30px",
     marginLeft: "20px",
