@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   ListItemButton,
@@ -9,23 +9,20 @@ import {
 } from "@mui/material";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import { useStyle } from "./style";
-import imageNFQ from "assets/images/NFQ.png";
-import imageGW from "assets/images/GW.png";
-const data = [
-  { icon: imageGW, label: "Ws1" },
-  { icon: imageNFQ, label: "Ws2" },
-  { icon: imageGW, label: "Ws3" },
-  { icon: imageNFQ, label: "Ws4" },
-  { icon: imageGW, label: "Ws5" },
-  { icon: imageNFQ, label: "Ws6" },
-  { icon: imageGW, label: "Ws7" },
-  { icon: imageNFQ, label: "Ws8" },
-  { icon: imageGW, label: "Ws9" },
-  { icon: imageNFQ, label: "Ws10" },
-];
+import { fetchWorkspaceList } from "api";
+
 const ListWorkspace = () => {
+  const data = [];
+
   const [open, setOpen] = useState(false);
   const classes = useStyle();
+  useEffect(() => {
+    fetchWorkspaceList()
+      .then((data) => {
+        console.log(data);
+      })
+      .catch();
+  });
   return (
     <Container maxWidth="xl" className={classes.wsContainer}>
       <Grid container spacing={2}>

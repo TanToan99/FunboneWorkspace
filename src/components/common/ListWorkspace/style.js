@@ -1,5 +1,4 @@
 import { makeStyles } from "@mui/styles";
-import { height } from "@mui/system";
 
 export const useStyle = makeStyles({
 
@@ -14,7 +13,6 @@ export const useStyle = makeStyles({
     justifyItems: "center",
     height: "calc(100vh - 90px)",
     borderRadius: "10px",
-    background: "#ffffff",
     boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
   },
 
