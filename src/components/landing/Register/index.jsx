@@ -59,6 +59,14 @@ const Register = () => {
           displayName: data.fullName,
           photoURL: "",
         });
+        firebase
+          .firestore()
+          .collection("user")
+          .doc(userCredential.user.uid)
+          .set({
+            avatarUrl: "",
+            username: data.userName,
+          });
         history.push("/login");
         // ...
       })

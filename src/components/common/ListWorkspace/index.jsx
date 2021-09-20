@@ -15,6 +15,7 @@ import { fetchWorkspaceList } from "api";
 =======
 import imageNFQ from "assets/images/NFQ.png";
 import imageGW from "assets/images/GWicon.png";
+
 const data = [
   { icon: imageGW, label: "Ws1" },
   { icon: imageNFQ, label: "Ws2" },
@@ -42,13 +43,15 @@ const ListWorkspace = () => {
   });
   return (
     <Container maxWidth="xl" className={classes.wsContainer}>
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         <Grid item xs={3}>
           <Box className={classes.listWorkspaces}>
             <ListItemButton
               alignItems="center"
               onClick={() => setOpen(!open)}
               sx={{
+                borderTopLeftRadius: "10px",
+                borderTopRightRadius: "10px",
                 "&:hover, &:focus": { "& svg": { opacity: open ? 0 : 1 } },
               }}
             >
@@ -61,10 +64,10 @@ const ListWorkspace = () => {
                   color: "black",
                 }}
               />
+              <ListItemIcon></ListItemIcon>
               <KeyboardArrowDown
                 sx={{
                   mr: -1,
-                  opacity: 0,
                   color: "black",
                   transform: open ? "rotate(-180deg)" : "rotate(0)",
                   transition: "0.2s",
@@ -110,6 +113,11 @@ const ListWorkspace = () => {
                   />
                 </ListItemButton>
               ))}
+          </Box>
+        </Grid>
+        <Grid item xs={9}>
+          <Box className={classes.detailWorkspace}>
+            
           </Box>
         </Grid>
       </Grid>
