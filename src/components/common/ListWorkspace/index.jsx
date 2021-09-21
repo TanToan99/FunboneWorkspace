@@ -70,10 +70,6 @@ const ListWorkspace = () => {
                 <ListItemButton
                   alignItems="center"
                   key={item.name}
-                  sx={{
-                    minHeight: 20,
-                    color: "black",
-                  }}
                   onClick={() => {
                     setWsInfo(item);
                   }}
