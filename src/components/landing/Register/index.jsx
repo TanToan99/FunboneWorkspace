@@ -17,7 +17,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import firebase from '../../../firebase';
+import firebase from 'firebase';
 
 const signUpSchema = yup.object().shape({
   fullName: yup.string().required(),
@@ -53,7 +53,6 @@ const Register = () => {
     const auth = firebase.getAuth();
     auth.createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         console.log("Sign Up Complete");
         firebase.updateProfile(auth.currentUser, {
           displayName: data.fullName,
@@ -67,8 +66,7 @@ const Register = () => {
             avatarUrl: "",
             username: data.userName,
           });
-        history.push("/login");
-        // ...
+        history.push("/login")
       })
       .catch((error) => {
         const errorCode = error.code;

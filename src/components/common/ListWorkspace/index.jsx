@@ -15,7 +15,7 @@ import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import { useStyle } from "./style";
 import { fetchWorkspaceList } from "api";
 import AddIcon from "@mui/icons-material/Add";
-import imgNFQ from "assets/images/NFQ.png"
+import imgNFQ from "assets/images/NFQ.png";
 
 const ListWorkspace = () => {
   const [data, setData] = useState([]);
@@ -99,17 +99,29 @@ const ListWorkspace = () => {
                 </ListItemButton>
               ))}
             <Divider />
-            <Fab color="secondary" sx={{ marginTop: "10px" }} aria-label="add">
+            <Fab
+              sx={{
+                marginTop: "10px",
+                color: "#ffffff",
+                background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+              }}
+              aria-label="add"
+            >
               <AddIcon />
             </Fab>
           </Box>
         </Grid>
-        {console.log(wsInfo)}
         <Grid item xs={9}>
           <Box className={classes.detailWorkspace}>
             {wsInfo && (
               <div>
-                <Typography sx={{ fontSize: 60, fontWeight: 600, textTransform: "uppercase" }}>
+                <Typography
+                  sx={{
+                    fontSize: 60,
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                  }}
+                >
                   {wsInfo.name}
                 </Typography>
                 <Typography sx={{ fontSize: 20, fontWeight: 600 }}>
@@ -134,7 +146,7 @@ const ListWorkspace = () => {
                     Join now
                   </Button>
                 </div>
-                <img src={imgNFQ} alt=""/>
+                <img src={imgNFQ} className={classes.picture} alt="" />
               </div>
             )}
           </Box>

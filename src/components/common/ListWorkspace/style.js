@@ -44,4 +44,8 @@ export const useStyle = makeStyles({
     zIndex: 1,
   },
 
+  picture:{
+    width:"700px",
+   height:"600px" ,
+  },
 });

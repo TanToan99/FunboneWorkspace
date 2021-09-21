@@ -1,15 +1,46 @@
 import React from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { useStyles } from "./styles";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import image from "assets/images/icon.png";
-import { } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import firebase from '../../../firebase';
 
 const Login = () => {
   const classes = useStyles();
+  const history = useHistory();
+  const { register, handleSubmit, formState:{errors} } = useForm({
+    defaultValues: {
+      username: "",
+      password: "",
+    },
+  });
+
+  const redirect = (isSuccess) => {
+    if (isSuccess) history.push("/home");
+  };
+
+  const onLogin = (data) => {
+    const auth = firebase.getAuth();
+    firebase.signInWithEmailAndPassword(auth, data.username, data.password)
+      .then((userCredential) => {
+        const userResult = userCredential.user;
+        const userInfo = {
+          uid: userResult.uid,
+          username: userResult.displayName,
+          email: userResult.email,
+          phone: userResult.phoneNumber,
+        };
+        redirect(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  const onError = () => console.log(errors);
   return (
     <div className={classes.loginForm}>
-      <Box component="form" autoComplete className={classes.form}>
+      <Box component="form" autoComplete className={classes.form} onSubmit={handleSubmit(onLogin, onError)} >
         <img src={image} alt="" className={classes.logo} />
         <h1 className={classes.titleForm}>Login</h1>
         <TextField
@@ -17,6 +48,10 @@ const Login = () => {
           required
           id="outlined-required"
           label="Username"
+          name="username"
+          {...register("username", {
+            required: true,
+          })}
         />
         <TextField
           className={classes.textfield}
@@ -24,7 +59,12 @@ const Login = () => {
           id="outlined-password-input"
           label="Password"
           type="password"
+          name="password"
           autoComplete="current-password"
+          {...register("password", {
+            minLength: 8,
+            required: true,
+          })}
         />
         <Button
           type="submit"
