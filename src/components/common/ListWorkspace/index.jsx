@@ -6,41 +6,31 @@ import {
   ListItemIcon,
   Container,
   Grid,
+  Divider,
+  Typography,
+  Fab,
+  Button,
 } from "@mui/material";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import { useStyle } from "./style";
-<<<<<<< HEAD
 import { fetchWorkspaceList } from "api";
+import AddIcon from "@mui/icons-material/Add";
+import imgNFQ from "assets/images/NFQ.png"
 
-=======
-import imageNFQ from "assets/images/NFQ.png";
-import imageGW from "assets/images/GWicon.png";
-
-const data = [
-  { icon: imageGW, label: "Ws1" },
-  { icon: imageNFQ, label: "Ws2" },
-  { icon: imageGW, label: "Ws3" },
-  { icon: imageNFQ, label: "Ws4" },
-  { icon: imageGW, label: "Ws5" },
-  { icon: imageNFQ, label: "Ws6" },
-  { icon: imageGW, label: "Ws7" },
-  { icon: imageNFQ, label: "Ws8" },
-  { icon: imageGW, label: "Ws9" },
-  { icon: imageNFQ, label: "Ws10" },
-];
->>>>>>> f1107dc... fix: resolve conflict
 const ListWorkspace = () => {
-  const data = [];
-
+  const [data, setData] = useState([]);
+  const [wsInfo, setWsInfo] = useState(null);
   const [open, setOpen] = useState(false);
   const classes = useStyle();
+
   useEffect(() => {
     fetchWorkspaceList()
-      .then((data) => {
-        console.log(data);
+      .then((items) => {
+        console.log(items);
+        setData(items);
       })
       .catch();
-  });
+  }, []);
   return (
     <Container maxWidth="xl" className={classes.wsContainer}>
       <Grid container spacing={3}>
@@ -53,6 +43,7 @@ const ListWorkspace = () => {
                 borderTopLeftRadius: "10px",
                 borderTopRightRadius: "10px",
                 "&:hover, &:focus": { "& svg": { opacity: open ? 0 : 1 } },
+                background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
               }}
             >
               <ListItemText
@@ -64,7 +55,6 @@ const ListWorkspace = () => {
                   color: "black",
                 }}
               />
-              <ListItemIcon></ListItemIcon>
               <KeyboardArrowDown
                 sx={{
                   mr: -1,
@@ -74,14 +64,18 @@ const ListWorkspace = () => {
                 }}
               />
             </ListItemButton>
+            <Divider />
             {open &&
               data.map((item) => (
                 <ListItemButton
                   alignItems="center"
-                  key={item.label}
+                  key={item.name}
                   sx={{
                     minHeight: 20,
                     color: "black",
+                  }}
+                  onClick={() => {
+                    setWsInfo(item);
                   }}
                 >
                   <ListItemIcon sx={{ color: "inherit" }}>
@@ -89,12 +83,12 @@ const ListWorkspace = () => {
                       className={classes.imageSrc}
                       width="35px"
                       height="35px"
-                      src={item.icon}
+                      src={item.image}
                       alt=""
                     />
                   </ListItemIcon>
                   <ListItemText
-                    primary={item.label}
+                    primary={item.name}
                     primaryTypographyProps={{
                       fontSize: 20,
                       fontWeight: "medium",
@@ -102,22 +96,47 @@ const ListWorkspace = () => {
                       color: "black",
                     }}
                   />
-                  <KeyboardArrowDown
-                    sx={{
-                      mr: -1,
-                      opacity: 0,
-                      color: "#fff",
-                      transform: open ? "rotate(-180deg)" : "rotate(0)",
-                      transition: "0.2s",
-                    }}
-                  />
                 </ListItemButton>
               ))}
+            <Divider />
+            <Fab color="secondary" sx={{ marginTop: "10px" }} aria-label="add">
+              <AddIcon />
+            </Fab>
           </Box>
         </Grid>
+        {console.log(wsInfo)}
         <Grid item xs={9}>
           <Box className={classes.detailWorkspace}>
-            
+            {wsInfo && (
+              <div>
+                <Typography sx={{ fontSize: 60, fontWeight: 600, textTransform: "uppercase" }}>
+                  {wsInfo.name}
+                </Typography>
+                <Typography sx={{ fontSize: 20, fontWeight: 600 }}>
+                  {wsInfo.description}
+                </Typography>
+              </div>
+            )}
+            <Divider variant="middle" />
+            {wsInfo && (
+              <div className={classes.viewContainer}>
+                <div className={classes.btn}>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      fontSize: 20,
+                      fontWeight: 600,
+                      padding: "10px 20px 10px 20px",
+                      background:
+                        "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                    }}
+                  >
+                    Join now
+                  </Button>
+                </div>
+                <img src={imgNFQ} alt=""/>
+              </div>
+            )}
           </Box>
         </Grid>
       </Grid>

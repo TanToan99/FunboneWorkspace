@@ -24,5 +24,24 @@ export const useStyle = makeStyles({
     borderRadius: "10px",
     background: "#ffffff",
     boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
-  }
+  },
+
+  viewContainer: {
+    display: "flex",
+    paddingTop: "30px",
+    justifyContent: "center",
+    width: "100%",
+    height: "80%",
+    zIndex: 0,
+    position: "relative",
+  },
+
+  btn: {
+    position: "absolute",
+    display: "flex",
+    alignSelf: "flex-end",
+    paddingBottom: "20px",
+    zIndex: 1,
+  },
+
 });
