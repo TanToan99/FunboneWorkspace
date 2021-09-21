@@ -5,3 +5,4 @@ export const fetchWorkspaceList = async () => {
   const workspaces = (await firestoreRef.get()).docs.map(item => item.data())
   return workspaces;
 }
+
