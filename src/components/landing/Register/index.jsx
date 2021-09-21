@@ -13,10 +13,11 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { styles } from "./style";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import firebase from 'firebase';
 
 const signUpSchema = yup.object().shape({
   fullName: yup.string().required(),
@@ -27,6 +28,7 @@ const signUpSchema = yup.object().shape({
 });
 
 const Register = () => {
+  const history = useHistory();
   const [values, setValues] = React.useState({
     showPassword: false,
   });
@@ -47,6 +49,30 @@ const Register = () => {
     e.preventDefault();
   };
   const onRegister = (data) => {
+    const { email, password } = data;
+    const auth = firebase.getAuth();
+    auth.createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log("Sign Up Complete");
+        firebase.updateProfile(auth.currentUser, {
+          displayName: data.fullName,
+          photoURL: "",
+        });
+        firebase
+          .firestore()
+          .collection("user")
+          .doc(userCredential.user.uid)
+          .set({
+            avatarUrl: "",
+            username: data.userName,
+          });
+        history.push("/login")
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode + ": " + errorMessage);
+      });
     console.log(data);
   };
   const onError = () => console.log(errors);
