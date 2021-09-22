@@ -5,7 +5,7 @@ export const useStyle = makeStyles({
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
-    
+    position: "relative",
     height: "calc(100vh - 70px)",
     boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
   },
@@ -32,11 +32,11 @@ export const useStyle = makeStyles({
   },
 
   videoCallBlock: {
-    padding: "10px 0px"
+    padding: "10px 10px"
   },
 
   videoFrame: {
-    flex: "0 0 calc(20% - 20px)",
+    flex: "0 0 calc(18% - 20px)",
     margin: "10px",
     position: "relative"
   },
@@ -67,5 +67,13 @@ export const useStyle = makeStyles({
     width: "100%",
     height: "100%",
     borderRadius: "10px",
+    objectFit: "cover"
+  },
+
+  bottomNavigator: {
+    position: "absolute",
+    width: "100%",
+    bottom: "0",
+    boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
   }
 });
