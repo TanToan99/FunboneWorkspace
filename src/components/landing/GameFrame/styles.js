@@ -7,6 +7,7 @@ export const useStyles = makeStyles({
     height: "100%",
     boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
   },
+
   videoBlock: {
     display: "flex",
     flexDirection: "row",
@@ -16,4 +17,5 @@ export const useStyles = makeStyles({
     width: "100%",
     zIndex: "1",
   },
+  
 });

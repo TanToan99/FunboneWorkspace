@@ -3,7 +3,7 @@ import React from "react";
 import { useStyle } from "./styles";
 
 const SideBar = (props) => {
-  const { image, name, data } = props;
+  const { image, name } = props;
   const classes = useStyle();
   return (
     <div>
