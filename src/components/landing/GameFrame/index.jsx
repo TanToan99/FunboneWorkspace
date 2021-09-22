@@ -4,6 +4,7 @@ import { useStyles } from "./styles";
 import image from "assets/images/webcam1.jpg";
 import image1 from "assets/images/webcam2.jpg";
 import image2 from "assets/images/webcam3.jpg";
+import { Demo } from 'components/landing';
 
 const GameFrame = (props) => {
   const classes = useStyles();
@@ -14,6 +15,7 @@ const GameFrame = (props) => {
         <VideoScreen name="Ngọc Thành" image={image} />
         <VideoScreen name="Hoàng Lâm" image={image2} />
       </div>
+    <Demo/>
     </div>
   );
 };
