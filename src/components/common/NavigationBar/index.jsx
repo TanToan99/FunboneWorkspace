@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Stack,
@@ -9,9 +9,14 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import icon from "assets/images/logo_1.png";
 import { useStyles } from "./styles";
+import ProfileCard from "components/landing/ProfileCard";
+import Button from '@mui/material/Button';
 
 const NavigationBar = () => {
   const classes = useStyles();
+  const [open,setOpen] = useState(false);
+  const handleClick = () => {setOpen(!open)};
+  
   return (
     <nav className={classes.container}>
       <Container maxWidth="xl">
@@ -41,8 +46,19 @@ const NavigationBar = () => {
             />
           </Stack>
           <img className={classes.logo} src={icon} alt="" />
-          <div className={classes.userBlock}>
-            <Avatar />
+          <div className={classes.userBlock} >
+            
+            <Button
+              onClick={handleClick}
+            >
+              <Avatar  />
+            </Button>
+
+            {open===true? (
+            <div className={classes.showProfileCard}>  
+              <ProfileCard/>
+            </div>
+            ): null}
           </div>
         </Stack>
       </Container>
