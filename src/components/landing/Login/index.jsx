@@ -1,15 +1,23 @@
 import React from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { useStyles } from "./styles";
-import { Link,useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import image from "assets/images/icon.png";
 import { useForm } from "react-hook-form";
-import firebase from '../../../firebase';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { addAccount } from "actions/account";
 
 const Login = () => {
   const classes = useStyles();
   const history = useHistory();
-  const { register, handleSubmit, formState:{errors} } = useForm({
+  const store = useSelector((state) => state);
+  const accountDispath = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       username: "",
       password: "",
@@ -21,31 +29,38 @@ const Login = () => {
   };
 
   const onLogin = (data) => {
-    const auth = firebase.getAuth();
-    firebase.signInWithEmailAndPassword(auth, data.username, data.password)
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, data.username, data.password)
       .then((userCredential) => {
-        const userResult = userCredential.user;
-        const userInfo = {
-          uid: userResult.uid,
-          username: userResult.displayName,
-          email: userResult.email,
-          phone: userResult.phoneNumber,
+        console.log("Login Successfully!");
+        const userData = userCredential.user;
+        const user = {
+          uid: userData.uid,
+          username: userData.email,
+          fullname: userData.displayName,
+          avatar: userData.photoURL,
+          role: "",
         };
+        console.log("User: ", user);
+        const action = addAccount(user);
+        accountDispath(action);
+        console.log("Store: ", store);
         redirect(true);
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch((error) => console.error(error));
   };
   const onError = () => console.log(errors);
   return (
     <div className={classes.loginForm}>
-      <Box component="form" autoComplete className={classes.form} onSubmit={handleSubmit(onLogin, onError)} >
+      <Box
+        component="form"
+        className={classes.form}
+        onSubmit={handleSubmit(onLogin, onError)}
+      >
         <img src={image} alt="" className={classes.logo} />
         <h1 className={classes.titleForm}>Login</h1>
         <TextField
           className={classes.textfield}
-          required
           id="outlined-required"
           label="Username"
           name="username"
@@ -55,7 +70,6 @@ const Login = () => {
         />
         <TextField
           className={classes.textfield}
-          required
           id="outlined-password-input"
           label="Password"
           type="password"
