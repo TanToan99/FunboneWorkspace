@@ -10,7 +10,6 @@ export const useStyles = makeStyles({
     position: "absolute",
     zIndex: "3",
     background: "#FFFFFF",
-
     right: "25px",
     left: "auto",
   },
