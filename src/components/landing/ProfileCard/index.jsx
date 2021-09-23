@@ -12,7 +12,7 @@ const ProfileCard = () => {
       <img src={image} alt="" className={classes.avt}/>
       <div className={classes.info}>
         <h1 className={classes.textName}>Le Ngoc Tan Toan</h1>
-        <h2 className={classes.roleName}>Developer</h2>
+        <h2 className={classes.roleName}>Developer/Designer/Unity Maker</h2>
       </div>
       
       <img src={iconedit} alt="" className={classes.edit} />
