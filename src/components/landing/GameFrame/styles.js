@@ -13,7 +13,7 @@ export const useStyles = makeStyles({
     flexDirection: "row",
     justifyContent: "center",
     position: "absolute",
-    height: "150px",
+    height: "190px",
     width: "100%",
     zIndex: "1",
   },

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import SideBar from "./sidebar";
 import { useStyle } from "./styles";
 import image from "assets/images/GW.png";
@@ -9,18 +9,16 @@ const VideoCall = () => {
   const classes = useStyle();
   return (
     <div className={classes.videoCallBlock}>
-      <Container maxWidth="xl">
-        <div>
-          <Grid container spacing={2}>
-            <Grid item xs={3}>
-              <SideBar name="University of Greenwich" image={image} />
-            </Grid>
-            <Grid item xs={9}>
-              <GameFrame />
-            </Grid>
+      <div>
+        <Grid container spacing={2}>
+          <Grid item xs={2.5}>
+            <SideBar name="University of Greenwich" image={image} />
           </Grid>
-        </div>
-      </Container>
+          <Grid item xs={9.5}>
+            <GameFrame />
+          </Grid>
+        </Grid>
+      </div>
     </div>
   );
 };

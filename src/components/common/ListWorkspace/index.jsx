@@ -17,10 +17,11 @@ import { fetchWorkspaceList } from "api";
 import AddIcon from "@mui/icons-material/Add";
 import imgNFQ from "assets/images/NFQ.png";
 
+
 const ListWorkspace = () => {
   const [data, setData] = useState([]);
   const [wsInfo, setWsInfo] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const classes = useStyle();
 
   useEffect(() => {
@@ -50,9 +51,9 @@ const ListWorkspace = () => {
                 primary="Workspaces"
                 primaryTypographyProps={{
                   fontSize: 20,
-                  fontWeight: "medium",
+                  fontWeight: "700",
                   lineHeight: "30px",
-                  color: "black",
+                  color: "white",
                 }}
               />
               <KeyboardArrowDown
@@ -110,22 +111,22 @@ const ListWorkspace = () => {
         <Grid item xs={9}>
           <Box className={classes.detailWorkspace}>
             {wsInfo && (
-              <div>
+              <div className={classes.introWorkspace} >
                 <Typography
                   sx={{
-                    fontSize: 60,
+                    fontSize: 40,
                     fontWeight: 600,
                     textTransform: "uppercase",
                   }}
                 >
                   {wsInfo.name}
                 </Typography>
-                <Typography sx={{ fontSize: 20, fontWeight: 600 }}>
+                <Typography sx={{ fontSize: 20, fontWeight: 600, paddingBottom: "10px" }}>
                   {wsInfo.description}
                 </Typography>
               </div>
             )}
-            <Divider variant="middle" />
+            
             {wsInfo && (
               <div className={classes.viewContainer}>
                 <div className={classes.btn}>
