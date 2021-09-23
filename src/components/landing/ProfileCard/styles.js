@@ -3,10 +3,16 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles({
   profile: {
     justifyItems: "left",
-    width: "23%",
+    width: "300px",
     boxShadow:
       "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
     padding: "10px",
+    position: "absolute",
+    zIndex: "3",
+    background: "#FFFFFF",
+
+    right: "25px",
+    left: "auto",
   },
   nameprofile: {
     display: "grid",
